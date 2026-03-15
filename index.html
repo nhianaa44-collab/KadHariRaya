@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Selamat Hari Raya</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<video id="videoPlayer" autoplay>
+    <source src="video1.mp4" type="video/mp4">
+</video>
+
+<script>
+
+let video = document.getElementById("videoPlayer")
+
+let videos = [
+"video1.mp4",
+"video2.mp4"
+]
+
+let current = 0
+let waitingForClick = false
+
+video.onended = () => {
+
+    if(current === 0){
+        video.src = videos[1]
+        video.loop = true
+        video.play()
+        waitingForClick = true
+    }
+
+}
+
+video.onclick = () => {
+
+    if(waitingForClick){
+        current++
+        video.loop = false
+        video.src = videos[current+1]
+        video.play()
+        waitingForClick = false
+    }
+
+}
+
+</script>
+
+</body>
+</html>
